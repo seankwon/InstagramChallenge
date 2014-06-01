@@ -1,7 +1,10 @@
 {
   "name": "code-challenge",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.4.0",
+    "gzippo": "^0.2.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.5.0",
