@@ -2,7 +2,7 @@
   "name": "code-challenge",
   "version": "0.0.0",
   "dependencies": {
-    "express": "^4.4.0",
+    "express": "~3.0.0",
     "gzippo": "^0.2.0"
   },
   "devDependencies": {
