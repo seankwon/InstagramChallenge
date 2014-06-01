@@ -103,6 +103,5 @@
   geoLocator.selectors = selectors;
   geoLocator.instParams = instParams;
   geoLocator.handler = eventHandler;
-  geoLocator.images = images;
 
 }( this, this.document, jQuery ));
