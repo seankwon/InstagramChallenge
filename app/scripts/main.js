@@ -4,7 +4,6 @@
    * TODO possibly a loading widget
    */
   win.geoLocator = win.geoLocator || {};
-  images = [];
 
   var instParams = ( function () {
     var clientId = '?client_id=15d5ec71f3564e06ba6017c3f26eb3ac'
@@ -57,8 +56,7 @@
     getImagesOfLocation: function ( latitude, longitude ) {
       var _this = this;
       var imageUrl = "";
-      //delete all the current images for the new ones
-      images = [];
+      // empty the container
       $('#image-container').html("");
 
       this.getIdOfNearestLocation( latitude, longitude, function ( id ) {
@@ -82,7 +80,7 @@
     },
 
     displayInstagramImgs: function () {
-      //FIXME dearest sean, you can use this when you learn how javascript scoping
+      //FIXME dearest sean, you can use this when you remember how javascript scoping
       //FIXME works >:[
       
       var imgTemplate;
