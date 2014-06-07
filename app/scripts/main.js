@@ -32,7 +32,6 @@
         },
 
         callInstagramUrl: function ( url, callback ) {
-            // callback function on success? or complete?
             $.ajax({
                 url: url,
                 dataType: 'jsonp',
@@ -49,7 +48,6 @@
         getIdOfNearestLocation: function ( latitude, longitude, callback ) {
             var currUrl = instParams.baseUrl + 'search' + instParams.clientId + 
                           '&lat=' + latitude + '&lng=' + longitude;
-            console.log(currUrl);
             this.callInstagramUrl(currUrl, function ( data ) {
                 return callback( data[0]['id'] );
             });
@@ -57,36 +55,27 @@
 
         getImagesOfLocation: function ( latitude, longitude ) {
             var _this = this;
-            var imageUrl = "";
-            // empty the container
-            $('#image-container').html("");
 
             this.getIdOfNearestLocation( latitude, longitude, function ( id ) {
-
                 var currUrl = instParams.baseUrl + id + '/media/recent' + instParams.clientId;
-                console.log(currUrl);
 
                 _this.callInstagramUrl(currUrl, function ( data ) {
-                    var imgTemplate;
-                    console.log(data);
-
-                    for ( var i = 0; i < data.length; i++ ) {
-                        imageUrl = data[i]['images']['thumbnail']['url'];
-                        imgTemplate = $($('#instagram-img').html());
-                        $(imgTemplate.children('img')).attr('src', imageUrl);
-                        $('#image-container').append(imgTemplate);
-                    }
+                    return _this.renderInstagramImgs( data );
                 });
             });
         },
 
-        displayInstagramImgs: function () {
+        renderInstagramImgs: function ( data ) {
+            // empty the container
+            $('#image-container').html("");
             var imgTemplate;
+            var imageUrl = "";
 
-            for (var i = 0; i < selectors.images.length; i++) {
-                imgTemplate = $($('#instagram-img').html());
-                $(imgTemplate.children('img')).attr('src', selectors.images[i]);
-                $('#image-container').append(imgTemplate);
+            for ( var i = 0; i < data.length; i++ ) {
+                imageUrl = data[i]['images']['thumbnail']['url'];
+                imgTemplate = $( $( '#instagram-img' ).html() );
+                $( imgTemplate.children( 'img' ) ).attr( 'src', imageUrl );
+                $( '#image-container' ).append( imgTemplate );
             }
         }
     };
